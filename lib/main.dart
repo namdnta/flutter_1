@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'package:get/route_manager.dart';
+import 'package:latihan1_11pplg2/pages/calculator_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginPage(),
+      home: CalculatorPage(),
     );
   }
 }
