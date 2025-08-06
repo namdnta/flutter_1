@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:latihan1_11pplg2/components/customButton.dart';
 import 'package:latihan1_11pplg2/components/customText.dart';
 import 'package:latihan1_11pplg2/components/cutomTextfield.dart';
@@ -30,14 +31,20 @@ Widget build(BuildContext context) {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
-            CustomTextField(
-              controller: kalkulatorController.txtAngkaPertama,
-              label: "Angka pertama",
-            ),
+CustomTextField(
+  controller: kalkulatorController.txtAngkaPertama,
+  label: "Angka pertama",
+  inputFormatters: [
+    FilteringTextInputFormatter.digitsOnly,
+  ],
+),
             const SizedBox(height: 16),
             CustomTextField(
               controller: kalkulatorController.txtAngkaKedua,
               label: "Angka kedua",
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
             ),
             const SizedBox(height: 24),
             Row(

@@ -1,4 +1,5 @@
   import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
   // import 'package:get/get.dart';
   import 'package:latihan1_11pplg2/components/customButton.dart';
   import 'package:latihan1_11pplg2/components/customDate.dart';
@@ -54,17 +55,27 @@
                 CustomTextField(
                   controller: usernameController,
                   label: 'Email',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+                  ],
                 ),
                 SizedBox(height: 10),
                 CustomTextField(
                   controller: usernameController,
                   label: 'Username',
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+                  ],
                 ),
                 SizedBox(height: 10),
                 CustomTextField(
                   controller: passwordController,
                   label: 'Password',
                   obscure: true,
+                                    inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+                  ],
+                  
                 ),
                 CustomText(
                   text: "Pilih Jenis Kelamin",
