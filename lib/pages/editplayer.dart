@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihan1_11pplg2/controllers/editplayer_kontroller.dart';
-import 'package:latihan1_11pplg2/controllers/football_player_kontroller.dart';
+import 'package:latihan1_11pplg2/controllers/editplayer_kontroller.dart' as editplayer;
+import 'package:latihan1_11pplg2/controllers/football_player_kontroller.dart' as football;
 import 'package:latihan1_11pplg2/components/cutomTextfield.dart';
 import 'package:latihan1_11pplg2/components/customText.dart';
 import 'package:latihan1_11pplg2/components/customButton.dart';
+import 'package:latihan1_11pplg2/Model/playerModel.dart' as model; // Make sure this import exists and PlayerModel is defined
 
 class EditPlayerPage extends StatelessWidget {
-  final Map<String, dynamic> player;
+  final model.PlayerModel player;
   final int playerIndex;
 
-  EditPlayerPage({Key? key, required this.player, required this.playerIndex}) : super(key: key);
+  const EditPlayerPage({super.key, required this.player, required this.playerIndex});
 
   @override
   Widget build(BuildContext context) {
-    final EditPlayerController editController = Get.put(EditPlayerController());
-    final FootballPlayerController footballController = Get.find<FootballPlayerController>();
+    final editplayer.EditPlayerController editController = Get.put(editplayer.EditPlayerController());
+    final football.FootballPlayerController footballController = Get.find<football.FootballPlayerController>();
 
     // Set initial data
     editController.setInitialData(player);
@@ -67,7 +68,7 @@ class EditPlayerPage extends StatelessWidget {
                     const SizedBox(height: 16),
                     Obx(() => Text(
                       editController.errorMessage.value,
-                      style: TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red),
                     )),
                   ],
                 ),
