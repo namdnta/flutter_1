@@ -1,11 +1,11 @@
   import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
   // import 'package:get/get.dart';
-  import 'package:latihan1_11pplg2/components/customButton.dart';
-  import 'package:latihan1_11pplg2/components/customDate.dart';
-  import 'package:latihan1_11pplg2/components/customRadio.dart';
-  import 'package:latihan1_11pplg2/components/customText.dart';
-  import 'package:latihan1_11pplg2/components/cutomTextfield.dart';
+  import 'package:latihan1_11pplg2/components/custom_button.dart';
+  import 'package:latihan1_11pplg2/components/custom_date.dart';
+  import 'package:latihan1_11pplg2/components/custom_radio.dart';
+  import 'package:latihan1_11pplg2/components/custom_text.dart';
+  import 'package:latihan1_11pplg2/components/cutom_textfield.dart';
  
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihan1_11pplg2/Model/playerModel.dart';
+import 'package:latihan1_11pplg2/Model/player_model.dart';
+
 
 // Dummy PlayerModel class
 class PlayerModel {
@@ -67,5 +68,11 @@ class EditPlayerController extends GetxController {
     super.onClose();
   }
 
-  PlayerModel getEditedData() {}
+  PlayerModel getEditedData() {
+    return PlayerModel(
+      name: nameController.text,
+      jerseyNumber: int.tryParse(jerseyController.text) ?? 0,
+      position: positionController.text,
+    );
+  }
 }

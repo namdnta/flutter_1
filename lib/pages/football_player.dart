@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihan1_11pplg2/controllers/football_player_kontroller.dart';
-import 'package:latihan1_11pplg2/components/customText.dart';
+import 'package:latihan1_11pplg2/components/custom_text.dart';
 import 'package:latihan1_11pplg2/pages/editplayer.dart';
 
 class FootballPlayerPage extends StatelessWidget {
@@ -81,8 +81,8 @@ Widget build(BuildContext context) {
                           ));
                         },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             );
@@ -91,4 +91,5 @@ Widget build(BuildContext context) {
       ),
     ),
   );
-}}
+}
+}

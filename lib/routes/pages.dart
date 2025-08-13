@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:latihan1_11pplg2/pages/football_player.dart';
 import 'package:latihan1_11pplg2/routes/routes.dart';
 import 'package:latihan1_11pplg2/pages/calculator_page.dart';
