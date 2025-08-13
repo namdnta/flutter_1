@@ -75,7 +75,7 @@ Widget build(BuildContext context) {
                         child: IconButton(
                           icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
                           onPressed: () {
-                            Get.to(() => EditPlayerPage(player: footballPlayerController.players[index]));
+                            Get.to(() => EditPlayerPage(player: footballPlayerController.players[index], playerIndex: index));
                           },
                         ),
                       ),

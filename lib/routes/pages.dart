@@ -12,8 +12,10 @@ class AppPages{
     GetPage(
       name: AppRoutes.editplayerPage,
       page: () {
-        final player = Get.arguments;
-        return EditPlayerPage(player: player);
+        final args = Get.arguments;
+        final player = args['player'];
+        final index = args['index'];
+        return EditPlayerPage(player: player, playerIndex: index);
       },
     ),
   ];

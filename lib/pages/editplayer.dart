@@ -1,43 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:latihan1_11pplg2/controllers/editplayer_kontroller.dart';
+import 'package:latihan1_11pplg2/controllers/football_player_kontroller.dart';
 import 'package:latihan1_11pplg2/components/cutomTextfield.dart';
 import 'package:latihan1_11pplg2/components/customText.dart';
 import 'package:latihan1_11pplg2/components/customButton.dart';
 
-class EditPlayerPage extends StatefulWidget {
+class EditPlayerPage extends StatelessWidget {
   final Map<String, dynamic> player;
+  final int playerIndex;
 
-  const EditPlayerPage({super.key, required this.player});
-
-  @override
-  State<EditPlayerPage> createState() => _EditPlayerPageState();
-}
-
-class _EditPlayerPageState extends State<EditPlayerPage> {
-  late TextEditingController nameController;
-  late TextEditingController jerseyController;
-  late TextEditingController positionController;
-
-  @override
-  void initState() {
-    super.initState();
-    // Isi TextField dengan data existing
-    nameController = TextEditingController(text: widget.player["name"]);
-    jerseyController = TextEditingController(text: widget.player["jerseyNumber"].toString());
-    positionController = TextEditingController(text: widget.player["position"]);
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    jerseyController.dispose();
-    positionController.dispose();
-    super.dispose();
-  }
+  EditPlayerPage({Key? key, required this.player, required this.playerIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final EditPlayerController editController = Get.put(EditPlayerController());
+    final FootballPlayerController footballController = Get.find<FootballPlayerController>();
+
+    // Set initial data
+    editController.setInitialData(player);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -69,36 +51,29 @@ class _EditPlayerPageState extends State<EditPlayerPage> {
                     const SizedBox(height: 20),
                     
                     CustomTextField(
-                      controller: nameController,
+                      controller: editController.nameController,
                       label: 'Nama Player',
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
-                      ],
                     ),
                     const SizedBox(height: 16),
-                    
                     CustomTextField(
-                      controller: jerseyController,
+                      controller: editController.jerseyController,
                       label: 'Nomor Punggung',
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                      ],
                     ),
                     const SizedBox(height: 16),
-                    
                     CustomTextField(
-                      controller: positionController,
+                      controller: editController.positionController,
                       label: 'Posisi',
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
-                      ],
                     ),
+                    const SizedBox(height: 16),
+                    Obx(() => Text(
+                      editController.errorMessage.value,
+                      style: TextStyle(color: Colors.red),
+                    )),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            
             Row(
               children: [
                 Expanded(
@@ -114,18 +89,17 @@ class _EditPlayerPageState extends State<EditPlayerPage> {
                   child: CustomButton(
                     myText: "💾 Save",
                     onPressed: () {
-                      // Update data player
-                      widget.player["name"] = nameController.text;
-                      widget.player["jerseyNumber"] = int.parse(jerseyController.text);
-                      widget.player["position"] = positionController.text;
-                      
-                      Get.back();
-                      Get.snackbar(
-                        "Success", 
-                        "Player updated successfully!",
-                        backgroundColor: Colors.green[100],
-                        colorText: Colors.green[800],
-                      );
+                      if (editController.validate()) {
+                        // Update list player di controller utama
+                        footballController.players[playerIndex] = editController.getEditedData();
+                        Get.back();
+                        Get.snackbar(
+                          "Success",
+                          "Player updated successfully!",
+                          backgroundColor: Colors.green[100],
+                          colorText: Colors.green[800],
+                        );
+                      }
                     },
                   ),
                 ),

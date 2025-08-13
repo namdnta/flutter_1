@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'football_player_kontroller.dart';
 
 class EditPlayerController extends GetxController {
   final nameController = TextEditingController();
@@ -35,6 +36,13 @@ class EditPlayerController extends GetxController {
     errorMessage.value = '';
     return true;
   }
+
+void save(int index) {
+  if (validate()) {
+    final footballController = Get.find<FootballPlayerController>();
+    footballController.players[index] = getEditedData();
+  }
+}
 
   @override
   void onClose() {
