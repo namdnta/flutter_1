@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihan1_11pplg2/controllers/football_player_kontroller.dart';
 import 'package:latihan1_11pplg2/components/customText.dart';
+import 'package:latihan1_11pplg2/pages/editplayer.dart';
 
 class FootballPlayerPage extends StatelessWidget {
   FootballPlayerPage({super.key});
@@ -74,7 +75,7 @@ Widget build(BuildContext context) {
                         child: IconButton(
                           icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
                           onPressed: () {
-                            Get.to(() => EditFootballPlayerPage(player: footballPlayerController.players[index]));
+                            Get.to(() => EditPlayerPage(player: footballPlayerController.players[index]));
                           },
                         ),
                       ),

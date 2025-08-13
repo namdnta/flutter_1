@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:latihan1_11pplg2/components/customTextField.dart';
+import 'package:latihan1_11pplg2/components/cutomTextfield.dart';
 import 'package:latihan1_11pplg2/components/customText.dart';
 import 'package:latihan1_11pplg2/components/customButton.dart';
 
-class Editplayer extends StatefulWidget {
+class EditPlayerPage extends StatefulWidget {
   final Map<String, dynamic> player;
 
-  const Editplayer({super.key, required this.player});
+  const EditPlayerPage({super.key, required this.player});
 
   @override
-  State<Editplayer> createState() => _EditplayerState();
+  State<EditPlayerPage> createState() => _EditPlayerPageState();
 }
 
-class _EditplayerState extends State<Editplayer> {
+class _EditPlayerPageState extends State<EditPlayerPage> {
   late TextEditingController nameController;
   late TextEditingController jerseyController;
   late TextEditingController positionController;
