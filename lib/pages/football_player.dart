@@ -40,30 +40,30 @@ Widget build(BuildContext context) {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText(
-                      text: footballPlayerController.players[index]["name"],
-                      color: Colors.black87,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      textAlign: TextAlign.left,
-                    ),
-                    const SizedBox(height: 8),
-                    CustomText(
-                      text: "Nomor punggung: ${footballPlayerController.players[index]["jerseyNumber"]}",
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      textAlign: TextAlign.left,
-                    ),
-                    const SizedBox(height: 4),
-                    CustomText(
-                      text: "Posisi: ${footballPlayerController.players[index]["position"]}",
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
-                      textAlign: TextAlign.left,
-                    ),
-                                         const SizedBox(width: 8),
+                      CustomText(
+                        text: footballPlayerController.players[index].name,
+                        color: Colors.black87,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(height: 8),
+                      CustomText(
+                        text: "Nomor punggung: ${footballPlayerController.players[index].jerseyNumber}",
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(height: 4),
+                      CustomText(
+                        text: "Posisi: ${footballPlayerController.players[index].position}",
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(width: 8),
                       const SizedBox(height: 8),
                       Container(
                         width: 40,
@@ -72,14 +72,17 @@ Widget build(BuildContext context) {
                           color: Colors.blue[50],
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: IconButton(
-                          icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
-                          onPressed: () {
-                            Get.to(() => EditPlayerPage(player: footballPlayerController.players[index], playerIndex: index));
-                          },
-                        ),
+                      child: IconButton(
+                        icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
+                        onPressed: () {
+                          Get.to(() => EditPlayerPage(
+                            player: footballPlayerController.players[index],
+                            playerIndex: index,
+                          ));
+                        },
                       ),
                     ],
+                  ),
                 ),
               ),
             );
