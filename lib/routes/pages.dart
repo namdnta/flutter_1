@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:latihan1_11pplg2/pages/football_player.dart';
+import 'package:latihan1_11pplg2/pages/profile.dart';
 import 'package:latihan1_11pplg2/routes/routes.dart';
 import 'package:latihan1_11pplg2/pages/calculator_page.dart';
-import 'package:latihan1_11pplg2/pages/editplayer.dart'; // harus EditPlayerPage
+import 'package:latihan1_11pplg2/pages/editplayer.dart';
 
 class AppPages{
   static final pages =[
@@ -10,12 +11,8 @@ class AppPages{
     GetPage(name: AppRoutes.footballPage, page: () => FootballPlayerPage()),
     GetPage(
       name: AppRoutes.editplayerPage,
-      page: () {
-        final args = Get.arguments;
-        final player = args['player'];
-        final index = args['index'];
-        return EditPlayerPage(player: player, playerIndex: index);
-      },
+      page: () => const EditPlayerPage(),
     ),
+    GetPage(name: AppRoutes.profilePage, page: () => const ProfilePage())
   ];
-}
+} 

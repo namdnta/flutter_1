@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-class PlayerModel {
-  String name;
-  int jerseyNumber;
-  String position;
-
-  PlayerModel({
-    required this.name,
-    required this.jerseyNumber,
-    required this.position,
-  });
-}
+import 'package:latihan1_11pplg2/Model/player_model.dart';
 
 class FootballPlayerController extends GetxController {
   var players = <PlayerModel>[].obs;
@@ -26,15 +15,16 @@ class EditPlayerController extends GetxController {
   late int playerIndex;
 
   @override
-  void onInit() {
-    super.onInit();
-    // Ambil data dari Get.arguments
-    final args = Get.arguments;
-    if (args != null) {
-      setInitialData(args['player']);
-      playerIndex = args['index'];
-    }
+// Di editplayer_kontroller.dart
+@override
+void onInit() {
+  super.onInit();
+  final args = Get.arguments;
+  if (args != null) {
+    setInitialData(args['player']);
+    playerIndex = args['index'] ?? 0;
   }
+}
 
   void setInitialData(PlayerModel player) {
     nameController.text = player.name;

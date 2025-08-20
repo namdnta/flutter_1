@@ -4,6 +4,7 @@ import 'package:latihan1_11pplg2/controllers/football_player_kontroller.dart';
 import 'package:latihan1_11pplg2/components/custom_text.dart';
 import 'package:latihan1_11pplg2/pages/editplayer.dart';
 
+
 class FootballPlayerPage extends StatelessWidget {
   FootballPlayerPage({super.key});
 
@@ -63,29 +64,32 @@ Widget build(BuildContext context) {
                         fontWeight: FontWeight.normal,
                         textAlign: TextAlign.left,
                       ),
-                      const SizedBox(width: 8),
-                      const SizedBox(height: 8),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.blue[50],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      child: IconButton(
-                        icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
-                        onPressed: () {
-                          Get.to(() => EditPlayerPage(
-                            player: footballPlayerController.players[index],
-                            playerIndex: index,
-                          ));
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
+          const SizedBox(width: 8),
+          const SizedBox(height: 8),
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
+              onPressed: () {
+                Get.to(
+                  () => EditPlayerPage(),
+                  arguments: {
+                    'player': footballPlayerController.players[index],
+                    'index': index,
+                  },
+                );
+              },
+            ),
+          ),
+      ],
+    ),
+  ),
+);
           },
         ),
       ),
