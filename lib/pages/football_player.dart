@@ -53,7 +53,7 @@ class FootballPlayerPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.green.withAlpha((0.3 * 255).toInt()),
+                    color: Colors.green.withValues(alpha: 0.3),
                     blurRadius: 15,
                     offset: const Offset(0, 5),
                   ),
@@ -88,44 +88,6 @@ class FootballPlayerPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Add new player functionality
-        },
-        backgroundColor: Colors.green[600],
-        foregroundColor: Colors.white,
-        icon: const Icon(Icons.add),
-        label: const Text('Add Player'),
-        elevation: 8,
-      ),
-    );
-  }
-  
-  // Add this method to handle the empty state
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.sports_soccer, size: 64, color: Colors.green[300]),
-          const SizedBox(height: 16),
-          CustomText(
-            text: 'No players found',
-            color: Colors.green[800]!,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          CustomText(
-            text: 'Tap "Add Player" to create a new player.',
-            color: Colors.green[700]!,
-            fontSize: 14,
-            fontWeight: FontWeight.normal,
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
     );
   }
 
@@ -133,6 +95,7 @@ class FootballPlayerPage extends StatelessWidget {
     return Column(
       children: [
         Text(icon, style: const TextStyle(fontSize: 24)),
+        const SizedBox(height: 8),
         CustomText(
           text: value,
           color: Colors.white,
@@ -160,7 +123,7 @@ class FootballPlayerPage extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 10,
           offset: const Offset(0, 4),
         ),
@@ -193,16 +156,16 @@ class FootballPlayerPage extends StatelessWidget {
                   border: Border.all(color: Colors.green[300]!, width: 3),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.green.withOpacity(0.3),
+                      color: Colors.green.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 3),
                     ),
                   ],
                 ),
                 child: ClipOval(
-                  child: player.photoUrl != null && player.photoUrl!.isNotEmpty
+                  child: (player.photoAsset != null && player.photoAsset!.isNotEmpty)
                       ? Image.network(
-                          player.photoUrl!,
+                          player.photoAsset!,
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return _buildDefaultAvatar(player.name);
@@ -275,43 +238,25 @@ class FootballPlayerPage extends StatelessWidget {
                 ),
               ),
               
-              // Action Buttons
-              Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blue[50],
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.blue[200]!),
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        Get.to(
-                          () => const EditPlayerPage(),
-                          arguments: {
-                            'player': player,
-                            'index': index,
-                          },
-                        );
+              // Edit Button Only
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue[50],
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.blue[200]!),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Get.to(
+                      () => const EditPlayerPage(),
+                      arguments: {
+                        'player': player,
+                        'index': index,
                       },
-                      icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.red[50],
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.red[200]!),
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        _showDeleteDialog(context, index);
-                      },
-                      icon: Icon(Icons.delete, color: Colors.red[600], size: 20),
-                    ),
-                  ),
-                ],
+                    );
+                  },
+                  icon: Icon(Icons.edit, color: Colors.blue[600], size: 20),
+                ),
               ),
             ],
           ),
@@ -321,12 +266,12 @@ class FootballPlayerPage extends StatelessWidget {
   );
 }
 
-// Helper method untuk default avatar
-Widget _buildDefaultAvatar(String playerName) {
-  String initials = playerName.isNotEmpty 
+// Tambahkan method untuk default avatar
+Widget _buildDefaultAvatar(String? playerName) {
+  String initials = (playerName != null && playerName.isNotEmpty)
       ? playerName.split(' ').map((name) => name[0]).take(2).join().toUpperCase()
       : 'P';
-      
+
   return Container(
     decoration: BoxDecoration(
       gradient: LinearGradient(
@@ -347,34 +292,38 @@ Widget _buildDefaultAvatar(String playerName) {
     ),
   );
 }
-
-  void _showDeleteDialog(BuildContext context, int index) {
-    Get.dialog(
-      AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text('Delete Player'),
-        content: const Text('Are you sure you want to delete this player?'),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: Text('Cancel', style: TextStyle(color: Colors.grey[600])),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              footballPlayerController.players.removeAt(index);
-              Get.back();
-              Get.snackbar(
-                'Success',
-                'Player deleted successfully',
-                backgroundColor: Colors.red[100],
-                colorText: Colors.red[800],
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red[600],
-              foregroundColor: Colors.white,
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(30),
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+              shape: BoxShape.circle,
             ),
-            child: const Text('Delete'),
+            child: Icon(
+              Icons.sports_soccer,
+              size: 80,
+              color: Colors.grey[400],
+            ),
+          ),
+          const SizedBox(height: 24),
+          CustomText(
+            text: 'No Players Yet',
+            color: Colors.grey[600]!,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          CustomText(
+            text: 'Add your first player to get started',
+            color: Colors.grey[500]!,
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+            textAlign: TextAlign.center,
           ),
         ],
       ),

@@ -5,7 +5,7 @@ import 'package:latihan1_11pplg2/components/custom_text.dart';
 import 'package:latihan1_11pplg2/components/cutom_textfield.dart';
 import 'package:latihan1_11pplg2/controllers/kalkulator_kontroller.dart';
 import 'package:get/get.dart';
-import 'package:latihan1_11pplg2/routes/routes.dart';
+
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
