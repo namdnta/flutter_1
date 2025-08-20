@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:latihan1_11pplg2/Model/player_model.dart';
 
-
-// Dummy PlayerModel class
 class PlayerModel {
   String name;
   int jerseyNumber;
@@ -16,7 +13,6 @@ class PlayerModel {
   });
 }
 
-// Dummy FootballPlayerController class
 class FootballPlayerController extends GetxController {
   var players = <PlayerModel>[].obs;
 }
@@ -27,6 +23,18 @@ class EditPlayerController extends GetxController {
   final positionController = TextEditingController();
 
   var errorMessage = ''.obs;
+  late int playerIndex;
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Ambil data dari Get.arguments
+    final args = Get.arguments;
+    if (args != null) {
+      setInitialData(args['player']);
+      playerIndex = args['index'];
+    }
+  }
 
   void setInitialData(PlayerModel player) {
     nameController.text = player.name;
@@ -53,10 +61,17 @@ class EditPlayerController extends GetxController {
     return true;
   }
 
-  void save(int index) {
+  void save() {
     if (validate()) {
       final footballController = Get.find<FootballPlayerController>();
-      footballController.players[index] = getEditedPlayer();
+      footballController.players[playerIndex] = getEditedPlayer();
+      Get.back();
+      Get.snackbar(
+        "Success", 
+        "Player updated successfully!",
+        backgroundColor: Colors.green[100],
+        colorText: Colors.green[800],
+      );
     }
   }
 
@@ -66,13 +81,5 @@ class EditPlayerController extends GetxController {
     jerseyController.dispose();
     positionController.dispose();
     super.onClose();
-  }
-
-  PlayerModel getEditedData() {
-    return PlayerModel(
-      name: nameController.text,
-      jerseyNumber: int.tryParse(jerseyController.text) ?? 0,
-      position: positionController.text,
-    );
   }
 }
