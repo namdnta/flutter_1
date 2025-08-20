@@ -34,7 +34,7 @@ void tambah() {
     hasil.value = (angkaPertama / angkaKedua).toString();
 
   } else {
-    print ("Error: Pembagian dengan nol tidak diperbolehkan");
+    hasil.value = "Error: Tidak bisa dibagi nol";
   }
 } 
 

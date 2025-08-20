@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:latihan1_11pplg2/routes/routes.dart';
 
 class CalculatorPage extends StatelessWidget {
-  CalculatorPage({super.key});
+  const CalculatorPage({super.key});
 
   final KalkulatorController kalkulatorController = Get.put(KalkulatorController());
 
@@ -198,7 +198,7 @@ Widget _buildOperationButton(String symbol, Color color, VoidCallback onPressed)
       borderRadius: BorderRadius.circular(30),
       boxShadow: [
         BoxShadow(
-          color: color.withOpacity(0.3),
+          color: Color.fromRGBO(color.red, color.green, color.blue, 0.3),
           blurRadius: 8,
           offset: const Offset(0, 4),
         ),

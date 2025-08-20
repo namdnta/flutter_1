@@ -5,7 +5,7 @@ import 'package:latihan1_11pplg2/components/custom_text.dart';
 import 'package:latihan1_11pplg2/pages/editplayer.dart';
 
 class FootballPlayerPage extends StatelessWidget {
-  FootballPlayerPage({super.key});
+  const FootballPlayerPage({super.key});
 
   final FootballPlayerController footballPlayerController = Get.put(FootballPlayerController());
 

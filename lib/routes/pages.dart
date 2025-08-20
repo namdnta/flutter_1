@@ -6,8 +6,8 @@ import 'package:latihan1_11pplg2/pages/editplayer.dart'; // harus EditPlayerPage
 
 class AppPages{
   static final pages =[
-    GetPage(name: AppRoutes.calculatorPage, page: () => CalculatorPage()),
-    GetPage(name: AppRoutes.footballPage, page: () => FootballPlayerPage()),
+    GetPage(name: AppRoutes.calculatorPage, page: () => const CalculatorPage()),
+    GetPage(name: AppRoutes.footballPage, page: () => const FootballPlayerPage()),
     GetPage(
       name: AppRoutes.editplayerPage,
       page: () {

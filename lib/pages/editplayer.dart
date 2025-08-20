@@ -7,11 +7,20 @@ import 'package:latihan1_11pplg2/components/custom_text.dart';
 import 'package:latihan1_11pplg2/components/custom_button.dart';
 
 class EditPlayerPage extends StatelessWidget {
-  const EditPlayerPage({super.key});
+  final PlayerModel? player;
+  final int? playerIndex;
+  
+  const EditPlayerPage({super.key, this.player, this.playerIndex});
 
   @override
   Widget build(BuildContext context) {
     final EditPlayerController editController = Get.put(EditPlayerController());
+    
+    // If player and playerIndex are provided, set initial data
+    if (player != null && playerIndex != null) {
+      editController.setInitialData(player!);
+      editController.playerIndex = playerIndex!;
+    }
 
     return Scaffold(
       appBar: AppBar(

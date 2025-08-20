@@ -5,10 +5,10 @@ class DatePickerButton extends StatelessWidget {
   final ValueChanged<DateTime?> onDatePicked;
 
   const DatePickerButton({
-    Key? key,
+    super.key,
     required this.selectedDate,
     required this.onDatePicked,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
