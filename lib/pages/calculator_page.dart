@@ -172,14 +172,6 @@ Widget build(BuildContext context) {
                   ),
                 ),
                 const SizedBox(width: 16),
-                Expanded(
-                  child: CustomButton(
-                    myText: "⚽ Football Page",
-                    onPressed: () {
-                      Get.toNamed(AppRoutes.footballPage);
-                    },
-                  ),
-                ),
               ],
             ),
           ],

@@ -2,26 +2,12 @@ class PlayerModel {
   String name;
   String position;
   int jerseyNumber;
+  String? photoUrl; // Tambahkan field foto
 
   PlayerModel({
     required this.name,
     required this.position,
     required this.jerseyNumber,
+    this.photoUrl, // Optional photo URL
   });
-
-  factory PlayerModel.fromJson(Map<String, dynamic> json) {
-    return PlayerModel(
-      name: json['name'] ?? '',
-      position: json['position'] ?? '',
-      jerseyNumber: json['jerseyNumber'] ?? 0,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'position': position,
-      'jerseyNumber': jerseyNumber,
-    };
-  }
 }
